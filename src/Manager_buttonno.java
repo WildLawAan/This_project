@@ -1,7 +1,11 @@
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -13,10 +17,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class Manager extends JFrame implements ActionListener {
+public class Manager_buttonno extends Component implements ActionListener {
 	// private FileWriter fw = new FileWriter("/Users/wildlaws/desktop/a.txt");
 	// 이게 안되는 이유가 뭘
-	BufferedImage img;
 	static String line2[];
 	static GregorianCalendar time = new GregorianCalendar();
 	private static int second = time.get(Calendar.SECOND);
@@ -31,55 +34,77 @@ public class Manager extends JFrame implements ActionListener {
 	JButton b3 = new JButton("Idea             ");
 	JButton b4 = new JButton("Jjan!!!           ");
 	JButton b5 = new JButton("The ended         ");
+	
+	BufferedImage img;
+	  
+    public void paint(Graphics g) {
+        g.drawImage(img, 0, 0, null); //그림을 그리는 메소드
+    }
+    //디폴트 생성자
+    public void Image() {
+       try {
+        String filename="/Users/wildlaws/desktop/Mylife/sky.jpeg"; // 파일의 경로
+           img = ImageIO.read(new File(filename));   //이미지 파일을 불러오는 IO 메소드
+                                //파일경로의 이미지 파일을 읽는다.
+       } catch (IOException e) {
+        e.printStackTrace();
+       }
+    }
 
-	public void paint(Graphics g) {
+    public Dimension getPreferredSize() {
+        if (img == null) {
+             return new Dimension(100,100); //그림 파일이 없을 경우 프레임의 크기를 100,100으로 만든다
+        } else {
+           return new Dimension(img.getWidth(null), img.getHeight(null)); //그림의 크기에 따라 화면의 크기를 변경한다.
+       }
+    }
 
-		g.drawImage(img, 0, 0, null); // 그림을 그리는 메소드
-	}
+	public Manager_buttonno() {
+		JFrame f = new JFrame("Hello! Today is " + (month + 1) + " /" + day + "/" + hour + " /" + minute);
+		
 
-	public Manager() {
-		super("Hello! Today is " + (month + 1) + " /" + day + "/" + hour + " /" + minute);
-		try {
-			String filename = "/Users/wildlaws/desktop/Mylife/sky.jpeg"; // 파일의 경로
-			img = ImageIO.read(new File(filename)); // 이미지 파일을 불러오는 IO 메소드
-			// 파일경로의 이미지 파일을 읽는다.
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		f.setLayout(new FlowLayout());
+		f.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 
-		this.setLayout(new FlowLayout());
+		
+		
+		
 
 		// 버튼 추가
-		this.add(b0);
-		this.add(b1);
-		this.add(b2);
-		this.add(b3);
-		this.add(b4);
-		this.add(b5);
+		f.add(new Image());
+		f.add(b0);
+		f.add(b1);
+		f.add(b2);
+		f.add(b3);
+		f.add(b4);
+		f.add(b5);
+		f.pack();
 
 		// 프레임 크기 지정
-		this.setSize(500, 600);
+		f.setSize(2000, 2000);
 
 		// 프레임 보이도록 설정
-		this.setVisible(true);
+		f.setVisible(true);
 
 		// X버튼 눌렀을 때 닫히도록 설정
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		b0.addActionListener(this);
-		b1.addActionListener(this);
-		b2.addActionListener(this);
-		b3.addActionListener(this);
-		b4.addActionListener(this);
-		b5.addActionListener(this);
+		b0.addActionListener((ActionListener) f);
+		b1.addActionListener((ActionListener) f);
+		b2.addActionListener((ActionListener) f);
+		b3.addActionListener((ActionListener) f);
+		b4.addActionListener((ActionListener) f);
+		b5.addActionListener((ActionListener) f);
 	}
-
-	// 디폴트 생성자
 
 	// 이건 밑에 반복하는거에 걸리니까 간좀 보
 	public static void main(String[] args) throws IOException {
 
-		new Manager();
+		new Manager_buttonno();
 
 		// FileWriter fw = new FileWriter("/Users/wildlaws/desktop/Mylife/idea.txt",
 		// true);
@@ -185,12 +210,14 @@ public class Manager extends JFrame implements ActionListener {
 			}
 		} else if (e.getSource().equals(b3)) {
 			JOptionPane.showMessageDialog(this, "문제의 해결책이 있으신가");
-
+			
+			
 		} else if (e.getSource().equals(b4)) {
 			JOptionPane.showMessageDialog(this, "해결되었습니다!!");
-
+			
+			
 		} else if (e.getSource().equals(b5)) {
-			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			//f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			String ch[] = { "내인생은 결국 나밖에 살수 없다 \n by wildlaw(안호준)", "삶이 있는 한 희망은 있다 \n by 키케로 ",
 					"산다는것 그것은 치열한 전투이다. \n by로망로랑 ", "하루에 3시간을 걸으면 7년 후에 지구를 한바퀴 돌 수 있다. \n by 사무엘 존슨 ",
 					"언제나 현재에 집중할수 있다면 행복할것이다. \n by 파울로 코엘료 ",

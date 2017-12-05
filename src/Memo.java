@@ -133,7 +133,7 @@ public class Memo extends JFrame implements ActionListener {
 			ob.setVisible(true);
 		}
 		if (e.getSource() == fhelp) {
-			JOptionPane.showMessageDialog(null, "이런것도 도와주어야 하나요? " + "버로우 타세요..");
+			JOptionPane.showMessageDialog(null,"Plolg 에 들어가 보세요 ");
 		}
 	}
 
@@ -165,7 +165,7 @@ public class Memo extends JFrame implements ActionListener {
 		ob.setDefaultCloseOperation(ob.EXIT_ON_CLOSE);
 		
 
-		Manager m = new Manager();
-		Manager.main(ar);
+		Manager_buttonno m = new Manager_buttonno();
+		Manager_buttonno.main(ar);
 	}
 } // class end

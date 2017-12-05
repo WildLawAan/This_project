@@ -1,8 +1,9 @@
 import java.io.IOException;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class Plolog {
+public class Plolog extends JFrame{
 
 	public static void main(String[] args) throws IOException {
 		int n1;
@@ -22,19 +23,22 @@ public class Plolog {
 			
 			
 			if (n1 == 0) {
-				Manager.main(args);
+				
 
 			} else if (n1 == 1) {
 				JOptionPane.showMessageDialog(null, "사용법사진 같은");
 				Plolog.main(args);
+				
 
 			} else if (n1 == 2) {
 				JOptionPane.showMessageDialog(null, "My Life 의 철학 ");
 				Plolog.main(args);
+				
 
 			} else if (n1 == 3) {
-				JOptionPane.showMessageDialog(null, "와주셔서 감사합니다. ");
-				Plolog.main(args);
+				JOptionPane.showMessageDialog(null, "혹시나 싶어서 넣어놓은건데 진짜 plolog에서 종료하시네요..? ");
+				System.exit(0);
+				
 
 			} else {
 				Plolog.main(args);
