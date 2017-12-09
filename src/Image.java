@@ -20,7 +20,7 @@ public class Image extends Component {
     //디폴트 생성자
     public Image() {
        try {
-        String filename="/Users/wildlaws/desktop/Mylife/sky.jpeg"; // 파일의 경로
+        String filename="workspace/sky.jpeg"; // 파일의 경로
            img = ImageIO.read(new File(filename));   //이미지 파일을 불러오는 IO 메소드
                                 //파일경로의 이미지 파일을 읽는다.
        } catch (IOException e) {

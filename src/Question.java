@@ -1,8 +1,19 @@
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class Question {
+public class Question extends JFrame{
+	static GregorianCalendar time = new GregorianCalendar();
+	private static int second = time.get(Calendar.SECOND);
+	private static int minute = time.get(Calendar.MINUTE);
+	private static int hour = time.get(Calendar.HOUR);
+	private static int day = time.get(Calendar.DATE);
+	private static int dm = time.get(Calendar.DAY_OF_MONTH);
+	private static int month = time.get(Calendar.MONTH);
+	private static int week = time.get(Calendar.DAY_OF_WEEK);
 	Go g = new Go();
 	String q1[];
 
@@ -49,7 +60,7 @@ public class Question {
 	public static int Q3() {
 		int n;
 		while (true) {
-			String input1 = JOptionPane.showInputDialog("Do tou want more? then please input 1");
+			String input1 = JOptionPane.showInputDialog("더 자세한 사항의 입력을 원하시면 1을 입력하세요! ");
 			if (isStringDouble(input1) == true) {
 				n = new Integer(input1).intValue();
 				if (n==1) {
@@ -68,6 +79,12 @@ public class Question {
 		}
 		
 
+	}
+	public static void Q4() {
+		JOptionPane.showMessageDialog(null,"문제가 있으시네요 ");
+		String input = JOptionPane.showInputDialog("What is the problem?");
+		String s = input + (month + 1) + " /" + day + " /" + hour + " /" + minute;
+		
 	}
 
 }
