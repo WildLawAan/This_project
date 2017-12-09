@@ -1,24 +1,21 @@
+import java.awt.Component;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class Manager extends JFrame implements ActionListener {
+public class Manager3_여차하면 extends JFrame implements ActionListener {
+	private static final String[] args = null;
+	// private FileWriter fw = new FileWriter("/Users/wildlaws/desktop/a.txt");
 	// 이게 안되는 이유가 뭘
-	BufferedImage img;
-	static String line2[] = {};
+	
+	static String line2[];
 	static GregorianCalendar time = new GregorianCalendar();
 	private static int second = time.get(Calendar.SECOND);
 	private static int minute = time.get(Calendar.MINUTE);
@@ -26,7 +23,6 @@ public class Manager extends JFrame implements ActionListener {
 	private static int day = time.get(Calendar.DATE);
 	private static int dm = time.get(Calendar.DAY_OF_MONTH);
 	private static int month = time.get(Calendar.MONTH);
-	private static int week = time.get(Calendar.DAY_OF_WEEK);
 	JButton b0 = new JButton("Plolog            ");
 	JButton b1 = new JButton("Chart             ");
 	JButton b2 = new JButton("Problem          ");
@@ -34,28 +30,13 @@ public class Manager extends JFrame implements ActionListener {
 	JButton b4 = new JButton("Jjan!!!           ");
 	JButton b5 = new JButton("The ended         ");
 
-	public void paint(Graphics g) {
-
-		g.drawImage(img, 0, 0, null); // 그림을 그리는 메소드
-	}
-
-	public Manager() {
-
-		super("반가워요! 오늘은  " + (month + 1) + " 월" + day + "일" + hour + " 시" + minute + "분 입니다!! ");
-		System.out.println(week);
-		//토요일이 7이고 일요일이 1이다.
-		//날짜 마다 다른 사진을 넣어주고 365 일기장 같은걸 만들어보자 .
-		if (week == 7) {
-			try {
-				String filename = "/Users/wildlaws/desktop/Mylife/sky.jpeg"; // 파일의 경로
-				img = ImageIO.read(new File(filename)); // 이미지 파일을 불러오는 IO 메소드
-				// 파일경로의 이미지 파일을 읽는다.
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+	public Manager3_여차하면() {
+		super("Hello! Today is " + (month + 1) + " /" + day + "/" + hour + " /" + minute);
+		Image i = new Image();
+		i.main(args);
 
 		this.setLayout(new FlowLayout());
+		
 
 		// 버튼 추가
 		this.add(b0);
@@ -82,16 +63,10 @@ public class Manager extends JFrame implements ActionListener {
 		b5.addActionListener(this);
 	}
 
-	// 디폴트 생성자
-
 	// 이건 밑에 반복하는거에 걸리니까 간좀 보
 	public static void main(String[] args) throws IOException {
 
-		FileWriter fw = new FileWriter("/Users/wildlaws/desktop/Mylife/a.txt");
-		// System.out.println(line2[0]);
-		// 이건 또 왜 안되니 ??
-
-		new Manager();
+		new Manager3_여차하면();
 
 		// FileWriter fw = new FileWriter("/Users/wildlaws/desktop/Mylife/idea.txt",
 		// true);
@@ -189,20 +164,20 @@ public class Manager extends JFrame implements ActionListener {
 		} else if (e.getSource().equals(b1)) {
 
 		} else if (e.getSource().equals(b2)) {
+			JOptionPane.showMessageDialog(this, "문제가 있으시네요 ");
 			Question q = new Question();
-			
-			q.Q4();
-
 			int n1 = q.Q3();
 			if (n1 == 1) {
 				Memo m = new Memo();
 			}
 		} else if (e.getSource().equals(b3)) {
 			JOptionPane.showMessageDialog(this, "문제의 해결책이 있으신가");
-
+			
+			
 		} else if (e.getSource().equals(b4)) {
 			JOptionPane.showMessageDialog(this, "해결되었습니다!!");
-
+			
+			
 		} else if (e.getSource().equals(b5)) {
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			String ch[] = { "내인생은 결국 나밖에 살수 없다 \n by wildlaw(안호준)", "삶이 있는 한 희망은 있다 \n by 키케로 ",
